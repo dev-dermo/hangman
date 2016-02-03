@@ -1,3 +1,5 @@
+require "csv"
+
 def find_replace_letter(word, letter, board)
   position = 0
   
@@ -29,17 +31,19 @@ def start_game
     board = "_" * word.length
     lives_left = 10
     
-    # puts word #this is the answer
     puts board
     puts "You have #{lives_left} lives left!"
   else
-    # board and word and turns left are set equal to values loaded from csv
-    lives_left = 2
-    board = "_____**____"
-    word = "shite"
+    game_state = CSV.read("save_file.csv")
+    
+    word = game_state[0][0]
+    board = game_state[0][1]
+    lives_left = game_state[0][2].to_i
   end
   
   while continue
+    puts board
+    puts "You have #{lives_left} lives left!"
     puts "What letter would you like to guess?:"
     letter = gets.chomp
     
@@ -61,6 +65,16 @@ def start_game
     unless board.include?("_")
       puts "CONGRADULATIONS, YOU WIN!"
       continue = false
+    end
+    
+    unless !continue
+      puts "Would you like to save you game?: Y/n"
+      answer = gets.chomp.downcase
+      if answer == "y"
+        CSV.open("save_file.csv", "w") do |csv|
+          csv << [word,board,lives_left]
+        end
+      end
     end
   end
 end
