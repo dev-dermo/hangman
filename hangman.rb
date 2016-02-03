@@ -74,6 +74,9 @@ def start_game
         CSV.open("save_file.csv", "w") do |csv|
           csv << [word,board,lives_left]
         end
+        continue = false
+        puts "Save complete!"
+        puts "Come back soon! Bye!"
       end
     end
   end
