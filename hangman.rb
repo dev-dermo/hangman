@@ -34,6 +34,9 @@ def start_game
     puts "You have #{lives_left} lives left!"
   else
     # board and word and turns left are set equal to values loaded from csv
+    lives_left = 2
+    board = "_____**____"
+    word = "shite"
   end
   
   while continue
@@ -51,12 +54,13 @@ def start_game
     
     if lives_left == 0
       puts "YOU LOSE, GAME OVER!"
-      continue = false # just to end the program
+      puts "The word was #{word}"
+      continue = false
     end 
     
     unless board.include?("_")
       puts "CONGRADULATIONS, YOU WIN!"
-      continue = false # just to end the program
+      continue = false
     end
   end
 end
