@@ -4,7 +4,7 @@ start game
         if yes fetch saved game state
     otherwise
         start new game state
-            turns left = 10
+            lives_left = 10
 
             open csv
                 read words
@@ -14,13 +14,30 @@ start game
                 return array
             end
 
-            board = array.random.split('')
-            word = board.join
+            word = array.random.split
+            board = 
         end
         
         take turn
-            update turns
-            update board
+            what letter to guess
+            
+            check letter
+                pos = 0
+                
+                while pos < word.length
+                    if letter_guess = word[pos]
+                        board[pos] = letter_guess
+                        pos += 1                
+                    end
+                end
+                
+                if board = " " * board.length
+                    lives_left -= 1
+                end
+                
+                puts board
+                puts lives_left 
+            end
         end
     end
 
