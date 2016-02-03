@@ -1,4 +1,6 @@
 start game
+
+    continue = true
     
     ask should game be loaded
         if yes fetch saved game state
@@ -18,29 +20,35 @@ start game
             board = 
         end
         
-        take turn
-            what letter to guess
-            
-            check letter
-                pos = 0
-                
-                while pos < word.length
-                    if letter_guess = word[pos]
-                        board[pos] = letter_guess
-                        pos += 1                
+        while continue = true
+            take turn
+                what letter to guess
+
+                check letter
+                    pos = 0
+
+                    while pos < word.length
+                        if letter_guess = word[pos]
+                            board[pos] = letter_guess
+                            pos += 1                
+                        end
                     end
+
+                    if board = " " * board.length
+                        lives_left -= 1
+                    end
+
+                    puts board
+                    puts lives_left
                 end
                 
-                if board = " " * board.length
-                    lives_left -= 1
+                would you like to save?
+                    create new / overwrite file "save_file.csv"
+                    puts word, board, lives_left
+                    close / save file
+
+                    continue = false
                 end
-                
-                puts board
-                puts lives_left 
             end
         end
     end
-
-    ask player would they like to save
-
-start new turn
