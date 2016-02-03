@@ -1,0 +1,29 @@
+start game
+    
+    ask should game be loaded
+        if yes fetch saved game state
+    otherwise
+        start new game state
+            turns left = 10
+
+            open csv
+                read words
+                if length >= 5 && <= 12
+                    push to array
+                end
+                return array
+            end
+
+            board = array.random.split('')
+            word = board.join
+        end
+        
+        take turn
+            update turns
+            update board
+        end
+    end
+
+    ask player would they like to save
+
+start new turn
